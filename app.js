@@ -1,7 +1,32 @@
 //Budget Controller
 
 var budgetController = (function() {
-  // Some Code
+  var Expense = function(id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  };
+
+  var Income = function(id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  };
+  
+
+
+  var data = {
+    allItems: {
+      exp: [],
+      inc: []
+    },
+    totals: {
+      exp: 0,
+      inc: 0
+    }
+
+  }
+
 })();
 
 //UI Controller
@@ -30,7 +55,6 @@ var UIController = (function() {
 //Global App Controller
 var controller = (function(budgetCtrl, UICtrl) {
   var setupEventListeners = function() {
-
     var DOM = UICtrl.getDOMstrings();
 
     document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
@@ -42,12 +66,10 @@ var controller = (function(budgetCtrl, UICtrl) {
     });
   };
 
-
-
   var ctrlAddItem = function() {
     //1 Get teh filled input data
     var input = UICtrl.getInput();
-    
+
     //2. add the item to the budget controller
 
     // 3 . add the item to the UI
@@ -58,13 +80,11 @@ var controller = (function(budgetCtrl, UICtrl) {
   };
 
   return {
-      init: function() {
-          console.log('Application has started');
-          setupEventListeners();
-      }
+    init: function() {
+      console.log("Application has started");
+      setupEventListeners();
+    }
   };
-
 })(budgetController, UIController);
-
 
 controller.init();
